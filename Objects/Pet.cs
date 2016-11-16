@@ -5,6 +5,7 @@ namespace Tamagotchi.Objects
   public class Pet
   {
     private string _petName;
+    private string _status;
     private int _food;
     private int _play;
     private int _sleep;
@@ -14,6 +15,7 @@ namespace Tamagotchi.Objects
     public Pet (string petName, int food = 100, int play = 80, int sleep = 100)
     {
       _petName = petName;
+      _status = "alive";
       _food = food;
       _play = play;
       _sleep = sleep;
@@ -28,6 +30,10 @@ namespace Tamagotchi.Objects
     public void SetPetName(string newPetName)
     {
       _petName = newPetName;
+    }
+    public string GetStatus()
+    {
+      return _status;
     }
     public int GetFood()
     {
@@ -103,6 +109,24 @@ namespace Tamagotchi.Objects
         pet._food -= 5;
         pet._sleep -= 5;
         pet._play -=5;
+        if(pet._food <= 0)
+        {
+          pet._status = "dead";
+        }
+        if(pet._sleep <= 0)
+        {
+          pet._status = "dead";
+        }
+        if(pet._play <= 0)
+        {
+          pet._status = "dead";
+        }
+        if(pet._status == "dead")
+        {
+          pet._food = 0;
+          pet._sleep = 0;
+          pet._play = 0;
+        }
       }
     }
     public static List<Pet> GetAll()

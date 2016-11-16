@@ -6,7 +6,14 @@
 <ul>
   @foreach(var pet in Model)
   {
-    <li><a href="/pets/@pet.GetId()">@pet.GetPetName()</a></li>
+    @if(pet.GetStatus() == "dead")
+    {
+      <li><a href="/pets/@pet.GetId()">@pet.GetPetName() died. Oh no!</a></li>
+    }
+    else
+    {
+      <li><a href="/pets/@pet.GetId()">@pet.GetPetName()</a></li>
+    }
   }
 </ul>
 <button class="button"><a href="/tamagotchi/new">Create a new pet</a></button>

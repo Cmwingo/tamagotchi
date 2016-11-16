@@ -79,6 +79,7 @@ namespace Tamagotchi.Objects
     }
     public int Feed()
     {
+      Pet.TimePass();
       if(_food <= 75)
       {
         _food += 25;
@@ -92,6 +93,15 @@ namespace Tamagotchi.Objects
     public int GetId()
     {
       return _id;
+    }
+    public static void TimePass()
+    {
+      foreach(var pet in _instances)
+      {
+        pet._food -= 5;
+        pet._sleep -= 5;
+        pet._play -=5;
+      }
     }
     public static List<Pet> GetAll()
     {

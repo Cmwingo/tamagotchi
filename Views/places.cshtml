@@ -1,0 +1,12 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<h1>Places I've Gone</h1>
+<ul>
+  @foreach(var place in Model)
+  {
+    <li><a href="/places/@place.GetId()">@place.GetCityName()</a></li>
+  }
+</ul>
+<p><a href="/places/new">Add a new city</a></p>

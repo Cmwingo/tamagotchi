@@ -1,8 +1,8 @@
 using Nancy;
-using TravelLog.Objects;
+using Tamagotchi.Objects;
 using System.Collections.Generic;
 
-namespace TravelLog
+namespace Tamagotchi
 {
   public class HomeModule : NancyModule
   {
@@ -11,21 +11,26 @@ namespace TravelLog
       Get["/"] = _ => {
         return View["index.cshtml"];
       };
-      Get["/places"] = _ => {
-        List<Place> allPlaces = Place.GetAll();
-        return View["places.cshtml", allPlaces];
+      Get["/pets"] = _ => {
+        List<Pet> allPets = Pet.GetAll();
+        return View["pets.cshtml", allPets];
       };
-      Get["/places/{id}"] = parameters => {
-        Place place = Place.Find(parameters.id);
-        return View["/place.cshtml", place];
+      Get["/pets/{id}"] = parameters => {
+        Pet pet = Pet.Find(parameters.id);
+        return View["/pet.cshtml", pet];
       };
-      Get["/places/new"] = _ => {
-        return View["place_form.cshtml"];
+      Get["/tamagotchi/new"] = _ => {
+        return View["tamagotchi_form.cshtml"];
       };
-      Post["/places"] = _ => {
-        Place newPlace = new Place (Request.Form["new-place-name"], Request.Form["new-place-description"], Request.Form["new-place-photo"]);
-        List<Place> allPlaces = Place.GetAll();
-        return View["places.cshtml", allPlaces];
+      Post["/pets"] = _ => {
+        Pet newPet = new Pet (Request.Form["new-pet-name"]);
+        List<Pet> allPets = Pet.GetAll();
+        return View["pets.cshtml", allPets];
+      };
+      Post["/pets/{id}/feed"] = parameters => {
+        Pet pet = Pet.Find(parameters.id);
+        pet.Feed();
+        return View["/pet_feed.cshtml", pet];
       };
     }
   }

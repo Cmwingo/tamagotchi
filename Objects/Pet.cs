@@ -53,6 +53,42 @@ namespace Tamagotchi.Objects
     {
       _sleep = newSleep;
     }
+    public int Play()
+    {
+      if(_play <= 75)
+      {
+        _play += 25;
+      }
+      else
+      {
+        _play = 100;
+      }
+      return _play;
+    }
+    public int Sleep()
+    {
+      if(_sleep <= 75)
+      {
+        _sleep += 25;
+      }
+      else
+      {
+        _sleep = 100;
+      }
+      return _sleep;
+    }
+    public int Feed()
+    {
+      if(_food <= 75)
+      {
+        _food += 25;
+      }
+      else
+      {
+        _food = 100;
+      }
+      return _food;
+    }
     public int GetId()
     {
       return _id;

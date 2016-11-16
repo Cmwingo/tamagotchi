@@ -1,5 +1,11 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
+
 <h1>Tamagotchi</h1>
-<a href="/tamagotchi/new">Create a new Tamagotchi pet</a>
+<h3>Create your new Tamagotchi:</h3>
+<form action="/pets" method="post">
+  <label for="new-pet-name">Pet Name:</label>
+  <input id="new-pet-name" name="new-pet-name" type="text">
+  <button type="submit">Create Your Pet</button>
+</form>

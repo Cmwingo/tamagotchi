@@ -55,6 +55,7 @@ namespace Tamagotchi.Objects
     }
     public int Play()
     {
+      Pet.TimePass();
       if(_play <= 75)
       {
         _play += 25;
@@ -67,6 +68,7 @@ namespace Tamagotchi.Objects
     }
     public int Sleep()
     {
+      Pet.TimePass();
       if(_sleep <= 75)
       {
         _sleep += 25;

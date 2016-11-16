@@ -38,7 +38,7 @@ namespace Tamagotchi
         Pet pet = Pet.Find(parameters.id);
         if(pet.GetStatus() == "dead")
         {
-          return View["/pet_dead.cshtml"];
+          return View["/pet_dead.cshtml", pet];
         }
         else if(parameters.action == "feed")
         {

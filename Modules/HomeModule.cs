@@ -17,7 +17,14 @@ namespace Tamagotchi
       };
       Get["/pets/{id}"] = parameters => {
         Pet pet = Pet.Find(parameters.id);
-        return View["/pet.cshtml", pet];
+        if(pet.GetStatus() == "dead")
+        {
+          return View["/pet_dead.cshtml",pet];
+        }
+        else
+        {
+          return View["/pet.cshtml", pet];
+        }
       };
       Get["/tamagotchi/new"] = _ => {
         return View["tamagotchi_form.cshtml"];
@@ -29,7 +36,11 @@ namespace Tamagotchi
       };
       Post["/pets/{id}/{action}"] = parameters => {
         Pet pet = Pet.Find(parameters.id);
-        if(parameters.action == "feed")
+        if(pet.GetStatus() == "dead")
+        {
+          return View["/pet_dead.cshtml"];
+        }
+        else if(parameters.action == "feed")
         {
           pet.Feed();
           return View["/pet_feed.cshtml", pet];
@@ -44,6 +55,12 @@ namespace Tamagotchi
           pet.Sleep();
           return View["/pet_sleep.cshtml", pet];
         }
+      };
+      Post["/pets/{id}/bury"] = parameters => {
+        Pet pet = Pet.Find(parameters.id);
+        pet.Bury();
+        List<Pet> allPets = Pet.GetAll();
+        return View["pets.cshtml", allPets];
       };
     }
   }

@@ -102,6 +102,10 @@ namespace Tamagotchi.Objects
     {
       return _id;
     }
+    public void Bury()
+    {
+      _instances.Remove(this);
+    }
     public static void TimePass()
     {
       foreach(var pet in _instances)

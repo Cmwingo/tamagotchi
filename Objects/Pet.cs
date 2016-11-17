@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Tamagotchi.Objects
 {
@@ -9,7 +10,7 @@ namespace Tamagotchi.Objects
     private int _food;
     private int _play;
     private int _sleep;
-    private int _id;
+    private long _id;
     private static List<Pet> _instances = new List<Pet> {};
 
     public Pet (string petName, int food = 100, int play = 80, int sleep = 100)
@@ -20,7 +21,7 @@ namespace Tamagotchi.Objects
       _play = play;
       _sleep = sleep;
       _instances.Add(this);
-      _id = _instances.Count;
+      _id = DateTime.Now.ToFileTime();
     }
 
     public string GetPetName()
@@ -98,7 +99,7 @@ namespace Tamagotchi.Objects
       }
       return _food;
     }
-    public int GetId()
+    public long GetId()
     {
       return _id;
     }
@@ -143,7 +144,7 @@ namespace Tamagotchi.Objects
     }
     public static Pet Find(int searchId)
     {
-      return _instances[searchId-1];
+      return _instances[searchId];
     }
   }
 }
